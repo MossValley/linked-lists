@@ -92,16 +92,17 @@ class LinkedList
     end
 
     def insert_at(value, index)
+        insert_node = Node.new(value)
         return puts "Error: list empty" if @head.nil?
         if index == 0
-            self.prepend(value)
+            self.prepend(insert_node)
         elsif index > self.size-1
-            self.append(value)
+            self.append(insert_node)
         else
             prev_node = index_finder(index-1)
             node = index_finder(index)
-            value.next_node = node
-            prev_node.next_node = value
+            insert_node.next_node = node
+            prev_node.next_node = insert_node
         end
     end
 
@@ -144,10 +145,6 @@ node_3 = Node.new("hello")
 node_4 = Node.new('world')
 node_5 = Node.new('start')
 
-node_6 = Node.new('delete_me')
-node_7 = Node.new('delete me too')
-node_8 = Node.new('delete me as well')
-
 list = LinkedList.new("test")
 
 list.insert_at(node_2, 3)
@@ -169,17 +166,17 @@ p list.contains?("b")
 p list.find("a")
 p list.find("hello")
 p list.to_s
-list.insert_at(node_6, 5)
+list.insert_at('delete me', 5)
 p list.size
 p list.to_s
-list.insert_at(node_7, 2)
+list.insert_at('delete me too', 2)
 p list.pop
 p list.size
 p list.to_s
-list.insert_at(node_6, 0)
+list.insert_at('delete me', 0)
 p list.size
 p list.to_s
-list.insert_at(node_8, 9)
+list.insert_at('delete me also', 9)
 p list.size
 p list.to_s
 list.remove_at(8)
